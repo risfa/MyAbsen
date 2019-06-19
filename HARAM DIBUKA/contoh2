@@ -1,0 +1,16 @@
+include('koneksi.php');
+
+if(isset($_POST['login'])){
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	
+	$sql_cek_login = mysql_query("SELECT * FROM nama_table WHERE username = '$username' AND password = '$password'");
+	$jumlah_data = mysql_num_rows($sql_cek_login);
+
+	if($jumlah_data == '1'){
+		$data_admin = mysql_fetch_array($sql_cek_login);
+		$_SESSION['username'] = $data_admin['namaKaryawan'];
+		syntax arahkan ke index.php
+	}
+
+}
